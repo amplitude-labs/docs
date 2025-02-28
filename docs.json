@@ -24,10 +24,8 @@
           {
             "group": "Data Sources",
             "pages": [
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "data-sources/images",
+              "data-sources/pdf",
             ]
           }
         ]
