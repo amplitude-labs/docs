@@ -1,13 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Nex AI justextract.it Documentation",
   "colors": {
     "primary": "#5959FF",
     "light": "#9696fa",
     "dark": "#7e7ed2"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.ico",
   "navigation": {
     "tabs": [
       {
@@ -15,18 +15,11 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": [
-              "introduction",
-              "quickstart",
-              "development"
-            ]
+            "pages": ["introduction", "quickstart", "development"]
           },
           {
             "group": "Data Sources",
-            "pages": [
-              "data-sources/images",
-              "data-sources/pdf",
-            ]
+            "pages": ["data-sources/images", "data-sources/pdf"]
           }
         ]
       },
@@ -35,9 +28,7 @@
         "groups": [
           {
             "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
+            "pages": ["api-reference/introduction"]
           },
           {
             "group": "Endpoint Examples",

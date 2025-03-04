@@ -4,27 +4,23 @@ description: "Preview changes locally to update your docs"
 ---
 
 <Info>
-  **Prerequisite**: Please onboard and get a paid API key from our [console](https://justextract.it/console) before
-  proceeding.
+  **Prerequisite**: Please onboard and get a paid API key from our
+  [console](https://justextract.it/console) before proceeding.
 </Info>
 
-Follow these steps to install and run Mintlify on your operating system:
+Follow these steps to make your first API call to [justextract.it](https://justextract.it):
 
-**Step 1**: Install Mintlify:
+**Step 1**: Get an API Key:
 
 <CodeGroup>
 
 ```bash npm
-npm i -g mintlify
-```
-
-```bash yarn
-yarn global add mintlify
+npx justextract.it --init
 ```
 
 </CodeGroup>
 
-**Step 2**: Navigate to the docs directory (where the `docs.json` file is located) and execute the following command:
+**Step 2**: Copy the code below to make a `fetch` request:
 
 ```bash
 mintlify dev
