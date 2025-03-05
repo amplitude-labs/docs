@@ -34,7 +34,7 @@
             "group": "Endpoints",
             "openapi": {
               "source": "/openapi.json",
-              "directory": "api-reference"
+              "directory": "/api-reference"
             }
           }
         ]
