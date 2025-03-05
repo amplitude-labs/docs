@@ -1,6 +1,4 @@
-export function ApiExamples() {
-  return (
-    <CodeGroup>
+<CodeGroup>
   ```javascript api.js
   const response = await fetch('https://api.justextract.it/v1/extract', {
     method: 'POST',
@@ -18,10 +16,9 @@ export function ApiExamples() {
       }
     })
   });
-
-const data = await response.json();
-
-````
+  
+  const data = await response.json();
+```
 
 ```python api.py
 import requests
@@ -43,7 +40,7 @@ response = requests.post(
 )
 
 data = response.json()
-````
+```
 
 ```ruby api.rb
 require 'net/http'
@@ -133,5 +130,3 @@ func main() {
 ```
 
 </CodeGroup>
-  )
-}
