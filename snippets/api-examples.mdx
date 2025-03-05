@@ -1,5 +1,6 @@
-export const ApiExamples = () => (
- <CodeGroup>
+export function ApiExamples() {
+  return (
+    <CodeGroup>
   ```javascript api.js
   const response = await fetch('https://api.justextract.it/v1/extract', {
     method: 'POST',
@@ -132,4 +133,5 @@ func main() {
 ```
 
 </CodeGroup>
-);
+  )
+}
