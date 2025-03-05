@@ -82,17 +82,17 @@ For a full list of values contained in a response, please refer to our [API refe
 <AccordionGroup>
   <Accordion icon="image" title="How Images Get Extracted">
     Images extractions are usually provided in one of two forms. Either, images are captioned or described, or they text within the image is extracted and any contextual visuals are thrown away. We extract both these pieces of data to provide a complete context-aware object that can look something like:
-
+    
     ```json image-extraction.json
     {
       "type": "image",
       "description": "string",
       "text_detected": "true",
       "text_extracted": {
-         "caption_at_top_left": {
+        "caption_at_top_left": {
           "id": "1",
           "text": "string"
-        },
+          },
         "caption_at_top_right": {
           "id": "2",
           "text": "string"
@@ -103,29 +103,57 @@ For a full list of values contained in a response, please refer to our [API refe
         }
       }
     }
-
-````
+    ```
 
 We recommend parsing this through an Large Language Model, or using our [juststructure.it API](/api/reference) to conform the extracted JSON to a given schema.
-  </Accordion>
-  <Accordion icon="file" title="How PDFs Get Extracted">
-    Previewing helps you make sure your changes look as intended. We built a
-    command line interface to render these changes locally.
-    1. Install the
-    [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the
-    documentation changes locally with this command: ``` npm i -g mintlify ```
-    2. Run the following command at the root of your documentation (where
-    `docs.json` is): ``` mintlify dev ```
-    <Note>
-      If you’re currently using the legacy ```mint.json``` configuration file, please update the Mintlify CLI:
 
-      ```npm i -g mintlify@latest```
-      And run the new upgrade command in your docs repository:
+</Accordion>
+<Accordion icon="file" title="How PDFs Get Extracted">
+   PDF extractions are done page by page. We extract text, images, visuals, layouts, etc, and provide a complete context-aware object that can look something like:
 
-      ```mintlify upgrade```
-      You should now be using the new ```docs.json``` configuration file. Feel free to delete the ```mint.json``` file from your repository.
-    </Note>
+```json pdf-extraction.json
+{
+  "language_detected": ["english", "vietnamese"],
+  "handwritten_detected": "true",
+  "extracted_data": [
+    {
+      "id": "1",
+      "page": "1",
+      "data": {
+        "header": "string",
+        "body": {
+          "table": [
+            {
+              "row_id": "1",
+              "content": "string"
+            },
+            {
+              "row_id": "2",
+              "content": "string"
+            }
+          ],
+          "caption": "string"
+        },
+        "footer": {
+          "signature": {
+            "type": "image",
+            "description": "string"
+          },
+          "disclaimer": "string"
+        }
+      }
+    }
+  ]
+}
+```
 
-  </Accordion>
+<Note>
+  Text-only extraction is more expensive with our methods than traditional OCR.
+  We specialise in multi-modal documents containing images, graphs, and odd
+  layouts. If you are extracting text from essays, long form reports, and
+  similar text-heavy documents, please let us know during our onboarding
+  session.
+</Note>
+
+</Accordion>
 </AccordionGroup>
-````
