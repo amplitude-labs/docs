@@ -25,7 +25,7 @@
       },
       {
         "tab": "API Reference",
-        "openapi": "api-reference/openapi.json",
+        "openapi": "api-reference/endpoints/openapi.json",
         "groups": [
           {
             "group": "API Documentation",
