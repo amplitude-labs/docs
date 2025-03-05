@@ -1,5 +1,5 @@
 ---
-title: "Development"
+title: "Quickstart"
 description: "Turn any data into complete JSON in under 5 minutes"
 ---
 
@@ -78,3 +78,33 @@ For a full list of values contained in a response, please refer to our [API refe
   You can increase your allocated extraction volume by [requesting a custom
   plan](https://mintlify.com/pricing) from us.
 </Tip>
+
+<AccordionGroup>
+  <Accordion icon="github" title="Clone your docs locally">
+    During the onboarding process, we created a repository on your Github with
+    your docs content. You can find this repository on our
+    [dashboard](https://dashboard.mintlify.com). To clone the repository
+    locally, follow these
+    [instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+    in your terminal.
+  </Accordion>
+  <Accordion icon="rectangle-terminal" title="Preview changes">
+    Previewing helps you make sure your changes look as intended. We built a
+    command line interface to render these changes locally. 
+    1. Install the
+    [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the
+    documentation changes locally with this command: ``` npm i -g mintlify ```
+    2. Run the following command at the root of your documentation (where
+    `docs.json` is): ``` mintlify dev ```
+    <Note>
+      If you’re currently using the legacy ```mint.json``` configuration file, please update the Mintlify CLI:
+
+      ```npm i -g mintlify@latest```
+      And run the new upgrade command in your docs repository:
+
+      ```mintlify upgrade```
+      You should now be using the new ```docs.json``` configuration file. Feel free to delete the ```mint.json``` file from your repository.
+    </Note>
+
+  </Accordion>
+</AccordionGroup>
