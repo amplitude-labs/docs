@@ -25,6 +25,7 @@
       },
       {
         "tab": "API Reference",
+        "openapi": "api-reference/openapi.json",
         "groups": [
           {
             "group": "API Documentation",
@@ -34,7 +35,7 @@
             "group": "Endpoints",
             "openapi": {
               "source": "/openapi.json",
-              "directory": "/api-reference"
+              "directory": "api-reference"
             }
           }
         ]
