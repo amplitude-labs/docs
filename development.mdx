@@ -1,104 +1,50 @@
----
-title: "Development"
-description: "Preview changes locally to update your docs"
+import { ApiExamples } from "/snippets/api-examples.mdx";
+
 ---
 
-<Info>
-  **Prerequisite**: Please onboard and get a paid API key from our
-  [console](https://justextract.it/console) before proceeding.
-</Info>
+title: "Development"
+description: "Make your first API call to justextract.it"
+
+---
 
 Follow these steps to make your first API call to [justextract.it](https://justextract.it):
 
-**Step 1**: Get an API Key:
+**Step 2**: Get an API Key:
 
-<CodeGroup>
+Please [book a meeting](https://app.apollo.io/#/meet/jonathan/15-min-onboarding) with us and
+get a paid API key from our [console](https://justextract.it/console) thereafter.
 
-```bash npm
-npx justextract.it --init
+<Info>
+  **Important**: You will not be able to proceed without completing this step.
+</Info>
+
+**Step 2**: Set your environment variable `JUSTEXTRACT_API_KEY` to the API key you obtained.
+
+**Step 3**: Download this [sample PDF](https://nexai.app) for test extraction.
+
+**Step 4**: Copy the code below to make a `fetch` request:
+
+<ApiExamples />
+
+**Step 4**: Run the code in your development environment:
+
+A response should soon appear in your console.
+
+### Success Response Object
+
+To make development as easy as possible for you, all response objects are standardized across our APIs:
+
+```json response.json
+{
+  "language_detected": []
+}
 ```
 
-</CodeGroup>
-
-**Step 2**: Copy the code below to make a `fetch` request:
-
-```bash
-mintlify dev
-```
-
-A local preview of your documentation will be available at `http://localhost:3000`.
-
-### Custom Ports
-
-By default, Mintlify uses port 3000. You can customize the port Mintlify runs on by using the `--port` flag. To run Mintlify on port 3333, for instance, use this command:
-
-```bash
-mintlify dev --port 3333
-```
-
-If you attempt to run Mintlify on a port that's already in use, it will use the next available port:
-
-```md
-Port 3000 is already in use. Trying 3001 instead.
-```
-
-## Mintlify Versions
-
-Please note that each CLI release is associated with a specific version of Mintlify. If your local website doesn't align with the production version, please update the CLI:
-
-<CodeGroup>
-
-```bash npm
-npm i -g mintlify@latest
-```
-
-```bash yarn
-yarn global upgrade mintlify
-```
-
-</CodeGroup>
-
-## Validating Links
-
-The CLI can assist with validating reference links made in your documentation. To identify any broken links, use the following command:
-
-```bash
-mintlify broken-links
-```
+For a full list of values contained in a response, please refer to our [API reference](/api-reference).
 
 ## Deployment
 
 <Tip>
-  Unlimited editors available under the [Pro Plan](https://mintlify.com/pricing)
-  and above.
+  You can increase your allocated extraction volume by [requesting a custom
+  plan](https://mintlify.com/pricing) from us.
 </Tip>
-
-If the deployment is successful, you should see the following:
-
-<Frame>
-  <img src="/images/checks-passed.png" style={{ borderRadius: "0.5rem" }} />
-</Frame>
-
-## Code Formatting
-
-We suggest using extensions on your IDE to recognize and format MDX. If you're a VSCode user, consider the [MDX VSCode extension](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx) for syntax highlighting, and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) for code formatting.
-
-## Troubleshooting
-
-<AccordionGroup>
-  <Accordion title='Error: Could not load the "sharp" module using the darwin-arm64 runtime'>
-
-    This may be due to an outdated version of node. Try the following:
-    1. Remove the currently-installed version of mintlify: `npm remove -g mintlify`
-    2. Upgrade to Node v19 or higher.
-    3. Reinstall mintlify: `npm install -g mintlify`
-
-  </Accordion>
-
-  <Accordion title="Issue: Encountering an unknown error">
-  
-    Solution: Go to the root of your device and delete the \~/.mintlify folder. Afterwards, run `mintlify dev` again.
-  </Accordion>
-</AccordionGroup>
-
-Curious about what changed in the CLI version? [Check out the CLI changelog.](https://www.npmjs.com/package/mintlify?activeTab=versions)
