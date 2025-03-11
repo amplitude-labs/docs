@@ -1,41 +1,49 @@
 <CodeGroup>
   ```javascript api.js
-  const response = await fetch('https://api.justextract.it/v1/extract', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer YOUR_API_KEY'
-    },
-    body: JSON.stringify({
-      url: 'https://example.com/article',
-      options: {
-        // Optional parameters
-        includeImages: true,
-        includeLinks: true,
-        maxLength: 1000
+const response = await fetch(
+      "https://api.justextract.it/v1/api/extract",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer YOUR_API_KEY",
+        },
+        body: JSON.stringify({
+          // We will use a sample PDF report from McKinsey here
+          url: "https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/2024/the-state-of-ai-in-early-2024-final.pdf",
+          filters: [
+            // These filter options can be left empty for now
+            // Read "https://docs.justextract.it/development" for more info
+            { pages: [] },
+            { query: "" },
+            { keywords: [] },
+            { content_types: [] },
+            { orientation: "portrait" },
+          ],
+        }),
       }
-    })
-  });
-  
-  const data = await response.json();
-```
+    );
+
+const data = await response.json();
 
 ```python api.py
 import requests
 
 response = requests.post(
-    'https://api.justextract.it/v1/extract',
+    'https://api.justextract.it/v1/api/extract',
     headers={
         'Content-Type': 'application/json',
         'Authorization': 'Bearer YOUR_API_KEY'
     },
     json={
-        'url': 'https://example.com/article',
-        'options': {
-            'includeImages': True,
-            'includeLinks': True,
-            'maxLength': 1000
-        }
+        'url': 'https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/2024/the-state-of-ai-in-early-2024-final.pdf',
+        'filters': [
+            {'pages': []},
+            {'query': ''},
+            {'keywords': []},
+            {'content_types': []},
+            {'orientation': 'portrait'}
+        ]
     }
 )
 
@@ -46,7 +54,7 @@ data = response.json()
 require 'net/http'
 require 'json'
 
-uri = URI('https://api.justextract.it/v1/extract')
+uri = URI('https://api.justextract.it/v1/api/extract')
 http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true
 
@@ -54,12 +62,14 @@ request = Net::HTTP::Post.new(uri)
 request['Content-Type'] = 'application/json'
 request['Authorization'] = 'Bearer YOUR_API_KEY'
 request.body = {
-  url: 'https://example.com/article',
-  options: {
-    includeImages: true,
-    includeLinks: true,
-    maxLength: 1000
-  }
+  url: 'https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/2024/the-state-of-ai-in-early-2024-final.pdf',
+  filters: [
+    { pages: [] },
+    { query: '' },
+    { keywords: [] },
+    { content_types: [] },
+    { orientation: 'portrait' }
+  ]
 }.to_json
 
 response = http.request(request)
@@ -67,13 +77,15 @@ data = JSON.parse(response.body)
 ```
 
 ```php api.php
-$ch = curl_init('https://api.justextract.it/v1/extract');
+$ch = curl_init('https://api.justextract.it/v1/api/extract');
 $data = [
-    'url' => 'https://example.com/article',
-    'options' => [
-        'includeImages' => true,
-        'includeLinks' => true,
-        'maxLength' => 1000
+    'url' => 'https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/2024/the-state-of-ai-in-early-2024-final.pdf',
+    'filters' => [
+        ['pages' => []],
+        ['query' => ''],
+        ['keywords' => []],
+        ['content_types' => []],
+        ['orientation' => 'portrait']
     ]
 ];
 
@@ -100,23 +112,33 @@ import (
     "net/http"
 )
 
+type Filter struct {
+    Pages        []string `json:"pages,omitempty"`
+    Query        string   `json:"query,omitempty"`
+    Keywords     []string `json:"keywords,omitempty"`
+    ContentTypes []string `json:"content_types,omitempty"`
+    Orientation  string   `json:"orientation,omitempty"`
+}
+
 type RequestBody struct {
-    URL     string                 \`json:"url"\`
-    Options map[string]interface{} \`json:"options"\`
+    URL     string   `json:"url"`
+    Filters []Filter `json:"filters"`
 }
 
 func main() {
     requestBody := RequestBody{
-        URL: "https://example.com/article",
-        Options: map[string]interface{}{
-            "includeImages": true,
-            "includeLinks":  true,
-            "maxLength":    1000,
+        URL: "https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/2024/the-state-of-ai-in-early-2024-final.pdf",
+        Filters: []Filter{
+            {Pages: []string{}},
+            {Query: ""},
+            {Keywords: []string{}},
+            {ContentTypes: []string{}},
+            {Orientation: "portrait"},
         },
     }
 
     jsonData, _ := json.Marshal(requestBody)
-    req, _ := http.NewRequest("POST", "https://api.justextract.it/v1/extract", bytes.NewBuffer(jsonData))
+    req, _ := http.NewRequest("POST", "https://api.justextract.it/v1/api/extract", bytes.NewBuffer(jsonData))
     req.Header.Set("Content-Type", "application/json")
     req.Header.Set("Authorization", "Bearer YOUR_API_KEY")
 

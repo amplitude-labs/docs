@@ -1,46 +1,109 @@
 ---
 title: "Development"
-description: "Make your first API call to justextract.it"
+description: "Learn how to develop rich and complex document processing pipelines with justextract.it."
 ---
 
 import ApiExamples from "/snippets/api-examples.mdx";
 
-**Step 1**: Get an API Key:
+If you haven't already, please refer to our [Quickstart Guide](/quickstart) first to understand the basics of making API calls with justextract.it.
 
-Please [book a meeting](https://app.apollo.io/#/meet/jonathan/15-min-onboarding) with us and
-get a paid API key from our [console](https://justextract.it/console) thereafter.
+## Prerequisites
 
-<Info>
-  **Important**: You will not be able to proceed without completing this step.
-</Info>
+- A valid API key (obtained from the [quickstart process](/quickstart))
+- Environment variable `JUSTEXTRACT_API_KEY` properly configured
+- Basic understanding of making API requests
 
-**Step 2**: Set your environment variable `JUSTEXTRACT_API_KEY` to the API key you obtained.
+## Advanced Filtering
 
-**Step 3**: Download this [sample PDF](https://nexai.app) for test extraction.
+The justextract.it API supports sophisticated filtering capabilities through an array of filter objects. Each filter object can be one of the following types:
 
-**Step 4**: Copy the code below to make a `fetch` request:
+### Content Type Filtering
 
-<ApiExamples />
+Filter content based on specific types:
 
-**Step 4**: Run the code in your development environment:
-
-A response should soon appear in your console.
-
-### Success Response Object
-
-To make development as easy as possible for you, all response objects are standardized across our APIs:
-
-```json response.json
+```json
 {
-  "language_detected": []
+  "include": false,
+  "content_types": ["table", "image", "text", "hyperlink"]
 }
 ```
 
-For a full list of values contained in a response, please refer to our [API reference](/api-reference).
+### Keyword Filtering
 
-## Deployment
+Search for specific keywords within the document:
 
-<Tip>
-  You can increase your allocated extraction volume by [requesting a custom
-  plan](https://mintlify.com/pricing) from us.
-</Tip>
+```json
+{
+  "include": false,
+  "keywords": ["specific", "terms", "to", "find"]
+}
+```
+
+### Custom Query Filtering
+
+Use natural language queries to find relevant content:
+
+```json
+{
+  "include": false,
+  "query": "Find sections discussing financial performance"
+}
+```
+
+### Page Number Filtering
+
+Extract specific pages:
+
+```json
+{
+  "include": false,
+  "pages": [1, 3, 5]
+}
+```
+
+### Page Orientation Filtering
+
+Filter based on page orientation:
+
+```json
+{
+  "include": false,
+  "orientation": "portrait" // or "landscape"
+}
+```
+
+<Note>
+  - The `include` parameter defaults to `false` if not specified - Filters can
+  be combined in any order within the filters array - Multiple instances of the
+  same filter type can be used - Filter processing is optimized: non-AI filters
+  (page number, orientation) are processed first - Sequential filtering: Results
+  from one filter are passed to the next filter in the array
+</Note>
+
+### Example Request with Multiple Filters
+
+```json
+{
+  "url": "https://example.com/document.pdf",
+  "filters": [
+    {
+      "pages": [1, 2, 3],
+      "include": true
+    },
+    {
+      "keywords": ["revenue", "growth"],
+      "include": true
+    },
+    {
+      "query": "Find sections discussing market analysis",
+      "include": true
+    }
+  ]
+}
+```
+
+<Warning>
+  Using multiple filters, especially custom queries, may impact processing time
+  and costs. Consider optimizing your filter strategy based on your specific
+  needs.
+</Warning>
