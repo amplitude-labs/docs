@@ -6,7 +6,7 @@ const response = await fetch(
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer YOUR_API_KEY",
+          Authorization: "Bearer JUSTEXTRACT_API_KEY",
         },
         body: JSON.stringify({
           // We will use a sample PDF report from McKinsey here
@@ -24,7 +24,7 @@ const response = await fetch(
       }
     );
 
-const data = await response.json();
+const data = await response.json();```
 
 ```python api.py
 import requests
@@ -33,7 +33,7 @@ response = requests.post(
     'https://api.justextract.it/v1/api/extract',
     headers={
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer YOUR_API_KEY'
+        'Authorization': 'Bearer JUSTEXTRACT_API_KEY'
     },
     json={
         'url': 'https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/2024/the-state-of-ai-in-early-2024-final.pdf',
@@ -60,7 +60,7 @@ http.use_ssl = true
 
 request = Net::HTTP::Post.new(uri)
 request['Content-Type'] = 'application/json'
-request['Authorization'] = 'Bearer YOUR_API_KEY'
+request['Authorization'] = 'Bearer JUSTEXTRACT_API_KEY'
 request.body = {
   url: 'https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/2024/the-state-of-ai-in-early-2024-final.pdf',
   filters: [
@@ -94,7 +94,7 @@ curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
-    'Authorization: Bearer YOUR_API_KEY'
+    'Authorization: Bearer JUSTEXTRACT_API_KEY'
 ]);
 
 $response = curl_exec($ch);
@@ -140,7 +140,7 @@ func main() {
     jsonData, _ := json.Marshal(requestBody)
     req, _ := http.NewRequest("POST", "https://api.justextract.it/v1/api/extract", bytes.NewBuffer(jsonData))
     req.Header.Set("Content-Type", "application/json")
-    req.Header.Set("Authorization", "Bearer YOUR_API_KEY")
+    req.Header.Set("Authorization", "Bearer JUSTEXTRACT_API_KEY")
 
     client := &http.Client{}
     resp, _ := client.Do(req)
