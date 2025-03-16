@@ -39,12 +39,16 @@ To speed up experimention, we will use a publicly hosted PDF report by McKinsey 
 ## Step 5: Run the code in your development environment
 
 <CodeGroup>
+
 ```bash npm
 node api.js
 ```
 
-````bash python
+
+```bash python
 python api.py
+```
+
 </CodeGroup>
 
 A response should soon appear in your console.
@@ -81,7 +85,7 @@ To make development as easy as possible for you, all response objects are standa
     }
   ]
 }
-````
+```
 
 For a full list of values contained in a response, please refer to our [API reference](/api-reference).
 
@@ -91,9 +95,9 @@ For a full list of values contained in a response, please refer to our [API refe
 </Tip>
 
 <AccordionGroup>
-  <Accordion icon="image" title="How Images Get Extracted">
+  <Accordion title="How Images Get Extracted" icon="image">
     Images extractions are usually provided in one of two forms. Either, images are captioned or described, or they text within the image is extracted and any contextual visuals are thrown away. We extract both these pieces of data to provide a complete context-aware object that can look something like:
-    
+
     ```json image-extraction.json
     {
       "type": "image",
@@ -116,55 +120,53 @@ For a full list of values contained in a response, please refer to our [API refe
     }
     ```
 
-We recommend parsing this through an Large Language Model, or using our [juststructure.it API](/api/reference) to conform the extracted JSON to a given schema.
+    We recommend parsing this through an Large Language Model, or using our [juststructure.it API](/api/reference) to conform the extracted JSON to a given schema.
+  </Accordion>
+  <Accordion title="How PDFs Get Extracted" icon="file">
+    PDF extractions are done page by page. We extract text, images, visuals, layouts, etc, and provide a complete context-aware object that can look something like:
 
-</Accordion>
-<Accordion icon="file" title="How PDFs Get Extracted">
-   PDF extractions are done page by page. We extract text, images, visuals, layouts, etc, and provide a complete context-aware object that can look something like:
-
-```json pdf-extraction.json
-{
-  "language_detected": ["english", "vietnamese"],
-  "handwritten_detected": "true",
-  "extracted_data": [
+    ```json pdf-extraction.json
     {
-      "id": "1",
-      "page": "1",
-      "data": {
-        "header": "string",
-        "body": {
-          "table": [
-            {
-              "row_id": "1",
-              "content": "string"
+      "language_detected": ["english", "vietnamese"],
+      "handwritten_detected": "true",
+      "extracted_data": [
+        {
+          "id": "1",
+          "page": "1",
+          "data": {
+            "header": "string",
+            "body": {
+              "table": [
+                {
+                  "row_id": "1",
+                  "content": "string"
+                },
+                {
+                  "row_id": "2",
+                  "content": "string"
+                }
+              ],
+              "caption": "string"
             },
-            {
-              "row_id": "2",
-              "content": "string"
+            "footer": {
+              "signature": {
+                "type": "image",
+                "description": "string"
+              },
+              "disclaimer": "string"
             }
-          ],
-          "caption": "string"
-        },
-        "footer": {
-          "signature": {
-            "type": "image",
-            "description": "string"
-          },
-          "disclaimer": "string"
+          }
         }
-      }
+      ]
     }
-  ]
-}
-```
+    ```
 
-<Note>
-  Text-only extraction is more expensive with our methods than traditional OCR.
-  We specialise in multi-modal documents containing images, graphs, and odd
-  layouts. If you are extracting text from essays, long form reports, and
-  similar text-heavy documents, please let us know during our onboarding
-  session.
-</Note>
-
-</Accordion>
+    <Note>
+      Text-only extraction is more expensive with our methods than traditional OCR.
+      We specialise in multi-modal documents containing images, graphs, and odd
+      layouts. If you are extracting text from essays, long form reports, and
+      similar text-heavy documents, please let us know during our onboarding
+      session.
+    </Note>
+  </Accordion>
 </AccordionGroup>
