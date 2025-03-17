@@ -55,35 +55,13 @@ A response should soon appear in your console.
 
 ### Success Response Object
 
-To make development as easy as possible for you, all response objects are standardized across our APIs:
+To make development as easy as possible for you, all response objects are standardized across our APIs.
+
+After sending over a URL pointing to the document intended for extraction, you should receive an object with `task_id` in return:
 
 ```json example-response.json
 {
-  "language_detected": ["english", "vietnamese"],
-  "handwritten_detected": "true",
-  "extracted_data": [
-    {
-      "id": "1",
-      "page": "1",
-      "data": {
-        "header": "string",
-        "body": {
-          "table": [
-            {
-              "row_id": "1",
-              "content": "string"
-            },
-            {
-              "row_id": "2",
-              "content": "string"
-            }
-          ],
-          "caption": "string"
-        },
-        "footer": "string"
-      }
-    }
-  ]
+  "task_id": "some-id"
 }
 ```
 
