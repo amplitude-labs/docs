@@ -1,6 +1,9 @@
 {
   "openapi": "3.1.0",
-  "info": { "title": "FastAPI", "version": "0.1.0" },
+  "info": {
+    "title": "FastAPI",
+    "version": "0.1.0"
+  },
   "paths": {
     "/api/extract": {
       "post": {
@@ -9,7 +12,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/ExtractForm" }
+              "schema": {
+                "$ref": "#/components/schemas/ExtractForm"
+              }
             }
           },
           "required": true
@@ -17,13 +22,60 @@
         "responses": {
           "200": {
             "description": "Successful Response",
-            "content": { "application/json": { "schema": {} } }
+            "content": {
+              "application/json": {
+                "schema": {
+
+                }
+              }
+            }
           },
           "422": {
             "description": "Validation Error",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/task/{task_id}": {
+      "get": {
+        "summary": "Get Task Status",
+        "operationId": "get_task_status_api_task__task_id__get",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
               }
             }
           }
@@ -37,7 +89,13 @@
         "responses": {
           "200": {
             "description": "Successful Response",
-            "content": { "application/json": { "schema": {} } }
+            "content": {
+              "application/json": {
+                "schema": {
+
+                }
+              }
+            }
           }
         }
       }
@@ -55,14 +113,21 @@
           "content_types": {
             "items": {
               "type": "string",
-              "enum": ["table", "image", "text", "hyperlink"]
+              "enum": [
+                "table",
+                "image",
+                "text",
+                "hyperlink"
+              ]
             },
             "type": "array",
             "title": "Content Types"
           }
         },
         "type": "object",
-        "required": ["content_types"],
+        "required": [
+          "content_types"
+        ],
         "title": "ContentTypeFilter"
       },
       "CustomFilter": {
@@ -72,23 +137,41 @@
             "title": "Include",
             "default": false
           },
-          "query": { "type": "string", "title": "Query" }
+          "query": {
+            "type": "string",
+            "title": "Query"
+          }
         },
         "type": "object",
-        "required": ["query"],
+        "required": [
+          "query"
+        ],
         "title": "CustomFilter"
       },
       "ExtractForm": {
         "properties": {
-          "url": { "type": "string", "title": "Url" },
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
           "filters": {
             "items": {
               "anyOf": [
-                { "$ref": "#/components/schemas/ContentTypeFilter" },
-                { "$ref": "#/components/schemas/CustomFilter" },
-                { "$ref": "#/components/schemas/KeywordFilter" },
-                { "$ref": "#/components/schemas/PageNumberFilter" },
-                { "$ref": "#/components/schemas/PageOrientationFilter" }
+                {
+                  "$ref": "#/components/schemas/ContentTypeFilter"
+                },
+                {
+                  "$ref": "#/components/schemas/CustomFilter"
+                },
+                {
+                  "$ref": "#/components/schemas/KeywordFilter"
+                },
+                {
+                  "$ref": "#/components/schemas/PageNumberFilter"
+                },
+                {
+                  "$ref": "#/components/schemas/PageOrientationFilter"
+                }
               ]
             },
             "type": "array",
@@ -96,13 +179,18 @@
           }
         },
         "type": "object",
-        "required": ["url", "filters"],
+        "required": [
+          "url",
+          "filters"
+        ],
         "title": "ExtractForm"
       },
       "HTTPValidationError": {
         "properties": {
           "detail": {
-            "items": { "$ref": "#/components/schemas/ValidationError" },
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
             "type": "array",
             "title": "Detail"
           }
@@ -118,13 +206,17 @@
             "default": false
           },
           "keywords": {
-            "items": { "type": "string" },
+            "items": {
+              "type": "string"
+            },
             "type": "array",
             "title": "Keywords"
           }
         },
         "type": "object",
-        "required": ["keywords"],
+        "required": [
+          "keywords"
+        ],
         "title": "KeywordFilter"
       },
       "PageNumberFilter": {
@@ -135,13 +227,17 @@
             "default": false
           },
           "pages": {
-            "items": { "type": "integer" },
+            "items": {
+              "type": "integer"
+            },
             "type": "array",
             "title": "Pages"
           }
         },
         "type": "object",
-        "required": ["pages"],
+        "required": [
+          "pages"
+        ],
         "title": "PageNumberFilter"
       },
       "PageOrientationFilter": {
@@ -153,26 +249,50 @@
           },
           "orientation": {
             "type": "string",
-            "enum": ["portrait", "landscape"],
+            "enum": [
+              "portrait",
+              "landscape"
+            ],
             "title": "Orientation"
           }
         },
         "type": "object",
-        "required": ["orientation"],
+        "required": [
+          "orientation"
+        ],
         "title": "PageOrientationFilter"
       },
       "ValidationError": {
         "properties": {
           "loc": {
-            "items": { "anyOf": [{ "type": "string" }, { "type": "integer" }] },
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
             "type": "array",
             "title": "Location"
           },
-          "msg": { "type": "string", "title": "Message" },
-          "type": { "type": "string", "title": "Error Type" }
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
         },
         "type": "object",
-        "required": ["loc", "msg", "type"],
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
         "title": "ValidationError"
       }
     }
