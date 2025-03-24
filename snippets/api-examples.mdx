@@ -13,13 +13,13 @@ const response = await fetch(
           // We will use a sample PDF report from McKinsey here
           url: "https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/2024/the-state-of-ai-in-early-2024-final.pdf",
           filters: [
-            // These filter options can be left empty for now
+            // These filter options can be left empty for now.
+			// Each filter will be applied sequentially, if it exists.
+			// For example, page-based filtering will occur first.
+			// Whatever remains will be filtered using a semantic query, etc.
             // Read "https://docs.justextract.it/development" for more info
-            { pages: [] },
-            { query: "" },
-            { keywords: [] },
-            { content_types: [] },
-            { orientation: "portrait" },
+            // { pages: [] },
+            // { query: "" },
           ],
         }),
       }
@@ -41,11 +41,13 @@ response = requests.post(
     json={
         'url': 'https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/2024/the-state-of-ai-in-early-2024-final.pdf',
         'filters': [
-            {'pages': []},
-            {'query': ''},
-            {'keywords': []},
-            {'content_types': []},
-            {'orientation': 'portrait'}
+ 			# These filter options can be left empty for now.
+			# Each filter will be applied sequentially, if it exists.
+			# For example, page-based filtering will occur first.
+			# Whatever remains will be filtered using a semantic query, etc.
+            # Read "https://docs.justextract.it/development" for more info
+            # {'pages': []},
+            # {'query': ''},
         ]
     }
 )
@@ -68,11 +70,13 @@ request['Authorization'] = 'Bearer JUSTEXTRACT_API_KEY'
 request.body = {
   url: 'https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/2024/the-state-of-ai-in-early-2024-final.pdf',
   filters: [
-    { pages: [] },
-    { query: '' },
-    { keywords: [] },
-    { content_types: [] },
-    { orientation: 'portrait' }
+	# These filter options can be left empty for now.
+	# Each filter will be applied sequentially, if it exists.
+	# For example, page-based filtering will occur first.
+	# Whatever remains will be filtered using a semantic query, etc.
+    # Read "https://docs.justextract.it/development" for more info
+    # { pages: [] },
+    # { query: '' },
   ]
 }.to_json
 
@@ -86,11 +90,13 @@ $ch = curl_init('https://api.justextract.it/api/extract');
 $data = [
     'url' => 'https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/2024/the-state-of-ai-in-early-2024-final.pdf',
     'filters' => [
-        ['pages' => []],
-        ['query' => ''],
-        ['keywords' => []],
-        ['content_types' => []],
-        ['orientation' => 'portrait']
+		# These filter options can be left empty for now.
+		# Each filter will be applied sequentially, if it exists.
+		# For example, page-based filtering will occur first.
+		# Whatever remains will be filtered using a semantic query, etc.
+        # Read "https://docs.justextract.it/development" for more info
+        # ['pages' => []],
+        # ['query' => ''],
     ]
 ];
 
